@@ -10,7 +10,7 @@ export class App {
       let userName = $('.username.input').val();
 
       fetch('https://api.github.com/users/' + userName)
-        .then((response)=> {response.json})
+        .then(response => response.json())
         .then(function (body) {
           self.profile = body;
           self.update_profile();
