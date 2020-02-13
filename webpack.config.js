@@ -4,7 +4,7 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const extractPlugin = new ExtractTextPlugin({filename: './assets/css/app.css'});
+const extractPlugin = new ExtractTextPlugin({ filename: './assets/css/app.css' });
 
 const config = {
 
@@ -38,18 +38,21 @@ const config = {
         use: ['html-loader']
       },
       {
-        test: /\.s?css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: extractPlugin.extract({
           use: [
             {
               loader: 'css-loader',
               options: {
+                minimize: true,
                 sourceMap: true
               }
-            }, {
+            },
+            {
               loader: 'sass-loader',
               options: {
-                sourceMap: true
+                sourceMap: true,
+                implementation: require("sass")
               }
             }
           ],
@@ -78,7 +81,7 @@ const config = {
 
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({template: 'index.html'}),
+    new HtmlWebpackPlugin({ template: 'index.html' }),
     extractPlugin
   ],
 
