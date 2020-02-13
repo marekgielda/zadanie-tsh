@@ -11,6 +11,22 @@
   transform: translateY(0.5em);
 }
 
+.profile-container {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .profile-container {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1280px){
+  .profile-container {
+    max-width: 30%;
+  }
+}
+
 #profile-bio{
   margin-top:10px;
 }
