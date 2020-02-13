@@ -12,6 +12,8 @@ export class App {
   initializeApp() {
     let self = this;
     $('.load-username').attr('disabled', true)
+    $('.profile-container').addClass('hidden')
+    $('.events-container').addClass('hidden')
 
     $('.username.input').on('input', () => {
       const userName = $('.username.input').val().trim();
@@ -27,6 +29,7 @@ export class App {
 
     $('.load-username').on('click', () => {
       $('#user-timeline').empty()
+      $('#spinner').removeClass('is-hidden')
       let userName = $('.username.input').val().trim();
       const profileDataPromise = this.getUserData(userName)
       const eventsDataPromise = this.getUserEvents(userName)
@@ -38,6 +41,9 @@ export class App {
           this.eventsData = eventsData
           this.renderEventsData()
           this.update_profile()
+          $('#spinner').addClass('is-hidden')
+          $('.profile-container').removeClass('hidden')
+          $('.events-container').removeClass('hidden')
         });
     })
   }
